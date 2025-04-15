@@ -2,7 +2,7 @@ var nameProduct, maProduct; // Tên sản phẩm trong trang này,
 // // là biến toàn cục để có thể dùng ở bát cứ đâu trong trang
 // // không cần tính toán lấy tên từ url nhiều lần
 
-window.onload = function() {
+window.onload = function () {
     khoiTao();
 
     // thêm tags (từ khóa) vào khung tìm kiếm
@@ -26,12 +26,12 @@ function phanTichURL_Web2() {
             request: "getbyid",
             id: maProduct
         },
-        success: function(data, status, xhr) {
+        success: function (data, status, xhr) {
             // console.log(data);
             addChiTietToWeb(data);
             nameProduct = data.TenSP;
         },
-        error: function(e) {
+        error: function (e) {
             Swal.fire({
                 type: "error",
                 title: "Lỗi lấy sản phẩm (chitietSanpham.js > phanTichURL_Web2)",
@@ -76,7 +76,7 @@ function addChiTietToWeb(p) {
         area_price.innerHTML += promoToWeb(p.KM.LoaiKM, giaTriSauKM);
     } else {
         document.getElementsByClassName('ship')[0].style.display = ''; // hiển thị 'giao hàng trong 1 giờ'
-        
+
         khuyenmaidiv = promoToWeb(p.KM.LoaiKM, giaTrikhuyenMai);
         area_price.innerHTML = `<strong>` + giaTri.toLocaleString() + `&#8363;</strong>` + khuyenmaidiv;
     }
@@ -108,7 +108,7 @@ function addChiTietToWeb(p) {
 
 function checkGuiBinhLuan() {
     getCurrentUser((user) => {
-        if(user == null) {
+        if (user == null) {
             Swal.fire({
                 title: 'Xin chào!',
                 text: 'Bạn cần đăng nhập để binh luận',
@@ -140,7 +140,7 @@ function guiBinhLuan(nguoidung) {
     var soSao = $("input[name='star']:checked").val();
     var binhLuan = $("#inpBinhLuan").val();
 
-    if(!soSao) {
+    if (!soSao) {
         Swal.fire({
             title: 'Thiếu!',
             text: 'Bạn vui lòng đánh số sao',
@@ -150,7 +150,7 @@ function guiBinhLuan(nguoidung) {
         return;
     }
 
-    if(!binhLuan) {
+    if (!binhLuan) {
         Swal.fire({
             title: 'Thiếu!',
             text: 'Bạn vui lòng để lại bình luận',
@@ -175,11 +175,11 @@ function guiBinhLuan(nguoidung) {
             binhluan: binhLuan,
             thoigian: new Date().toMysqlFormat()
         },
-        success: function(data, status, xhr) {
+        success: function (data, status, xhr) {
             $("#inpBinhLuan").val("");
             refreshBinhLuan();
         },
-        error: function(e) {
+        error: function (e) {
             console.log(e);
         }
     })
@@ -195,14 +195,14 @@ function refreshBinhLuan() {
             request: "getbinhluan",
             masp: maProduct
         },
-        success: function(data, status, xhr) {
+        success: function (data, status, xhr) {
             var div = document.getElementsByClassName("comment-content")[0];
             div.innerHTML = "";
-            for(var b of data) {
+            for (var b of data) {
                 div.innerHTML += createComment(b.ND.TaiKhoan, b.BinhLuan, getRateStar(b.SoSao), b.NgayLap);
             }
         },
-        error: function(e) {
+        error: function (e) {
             console.log(e);
         }
     })
@@ -257,7 +257,7 @@ function addThongSo(ten, giatri) {
 function createComment(name, value, star, time) {
     return `<div class="comment">
                 <i class="fa fa-user-circle"> </i>
-                <h4>` + name + `<span> `+ star +`</span></h4>
+                <h4>` + name + `<span> ` + star + `</span></h4>
                 <p>` + value + `</p>
                 <span class="time">` + time + `</span>
             </div>`;
@@ -287,3 +287,26 @@ function closecertain() {
 function changepic(src) {
     document.getElementById("bigimg").src = src;
 }*/
+
+// Thêm hiệu ứng khi click button
+document.querySelectorAll('.cute-button').forEach(button => {
+    button.addEventListener('click', () => {
+        button.style.transform = 'scale(0.95)';
+        setTimeout(() => {
+            button.style.transform = 'scale(1)';
+        }, 100);
+    });
+});
+
+// Thêm hiệu ứng khi cuộn trang
+window.addEventListener('scroll', () => {
+    const header = document.querySelector('header');
+    if (window.scrollY > 100) {
+        header.style.transform = 'scale(0.98)';
+        header.style.opacity = '0.9';
+    } else {
+        header.style.transform = 'scale(1)';
+        header.style.opacity = '1';
+    }
+});
+

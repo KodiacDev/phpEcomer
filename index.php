@@ -7,6 +7,7 @@
 	<!-- <meta http-equiv="X-UA-Compatible" content="ie=edge"> -->
 	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 
+	<link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
 	<title>Thế giới điện thoại</title>
 	<link rel="shortcut icon" href="img/favicon.ico" />
 
@@ -54,15 +55,15 @@
 	<?php addTopNav(); ?>
 
 	<section>
-		<?php 
-			addHeader(); 
-			addHome();
+		<?php
+		addHeader();
+		addHome();
 		?>
 	</section>
 
 	<?php
-		addContainTaiKhoan();
-		addPlc();
+	addContainTaiKhoan();
+	addPlc();
 	?>
 
 	<div class="footer">
@@ -71,7 +72,23 @@
 
 	<i class="fa fa-arrow-up" id="goto-top-page" onclick="gotoTop()"></i>
 	<i class="fa fa-arrow-down" id="goto-bot-page" onclick="gotoBot()"></i>
+	<!-- /* Thêm hiệu ứng mây */ -->
+	<script>
+		document.addEventListener('DOMContentLoaded', () => {
+			const createCloud = () => {
+				const cloud = document.createElement('div');
+				cloud.className = 'cloud';
+				cloud.innerHTML = '☁️';
+				cloud.style.top = Math.random() * 100 + 'vh';
+				cloud.style.fontSize = Math.random() * 20 + 30 + 'px';
+				cloud.style.animationDuration = Math.random() * 10 + 15 + 's';
+				document.body.appendChild(cloud);
 
+				setTimeout(() => cloud.remove(), 25000);
+			}
+			setInterval(createCloud, 3000);
+		});
+	</script>
 </body>
 
 </html>

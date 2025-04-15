@@ -66,23 +66,31 @@ hr {
 }
 
 .loader {
-  border: 16px solid #f3f3f3; /* Light grey */
-  border-top: 16px solid #3498db; /* Blue */
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  animation: spin 2s linear infinite;
-  margin: 10px auto;
+    border: 16px solid #f3f3f3;
+    /* Light grey */
+    border-top: 16px solid #3498db;
+    /* Blue */
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 2s linear infinite;
+    margin: 10px auto;
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 /* =========   Alert ===============*/
 #alert {
-    z-index: 200; /* luôn trên cùng (đè lên những thứ khác) */
+    z-index: 200;
+    /* luôn trên cùng (đè lên những thứ khác) */
     display: block;
     position: fixed;
     bottom: 40px;
@@ -111,7 +119,8 @@ hr {
 
 /* ===== End clear float ====== */
 
-#goto-top-page, #goto-bot-page {
+#goto-top-page,
+#goto-bot-page {
     position: fixed;
     bottom: 15px;
     right: 15px;
@@ -127,7 +136,9 @@ hr {
     cursor: pointer;
     transition-duration: .2s;
 }
-#goto-top-page:hover, #goto-bot-page:hover {
+
+#goto-top-page:hover,
+#goto-bot-page:hover {
     background: rgba(0, 0, 0, .7);
     width: 50px;
     height: 50px;
@@ -239,3 +250,554 @@ hr {
         opacity: 0
     }
 }
+
+/* Base styles */
+* {
+    scroll-behavior: smooth;
+    box-sizing: border-box;
+}
+
+body {
+    background: linear-gradient(135deg, #fff5f5 0%, #f8f7ff 100%);
+    min-height: 100vh;
+    font-family: 'Comic Neue', cursive;
+}
+
+section {
+    max-width: 1205px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Loader cute */
+.loader {
+    border: 8px solid #ffd1dc;
+    border-top: 8px solid #ff69b4;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s ease-in-out infinite;
+    position: relative;
+}
+
+.loader::after {
+    content: "🦄";
+    font-size: 24px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Alert Bubble */
+#alert {
+    background: #ff9eb5;
+    border-radius: 25px;
+    box-shadow: 0 8px 20px rgba(255, 158, 181, 0.3);
+    animation: alertPop 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+@keyframes alertPop {
+    0% {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+
+    80% {
+        transform: translateX(-10%);
+    }
+
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Scroll to top/bottom buttons */
+#goto-top-page,
+#goto-bot-page {
+    background: #ff9eb5;
+    box-shadow: 0 4px 15px rgba(255, 158, 181, 0.3);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#goto-top-page:hover,
+#goto-bot-page:hover {
+    background: #ff69b4;
+    transform: scale(1.1) rotate(360deg);
+    box-shadow: 0 8px 25px rgba(255, 105, 180, 0.4);
+}
+
+/* Scrollbar Candy */
+::-webkit-scrollbar {
+    width: 12px;
+    background: #fff5f5;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(45deg, #ff9eb5, #ff69b4);
+    border-radius: 10px;
+    border: 3px solid #fff5f5;
+}
+
+/* Tooltip Cloud */
+.tooltip .tooltiptext {
+    background: #fff;
+    color: #ff69b4;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(255, 105, 180, 0.2);
+    font-size: 14px;
+    animation: tooltipFloat 1s ease-in-out infinite;
+}
+
+.tooltip .tooltiptext::after {
+    border-color: #fff transparent transparent transparent;
+}
+
+@keyframes tooltipFloat {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+/* Ping Animation */
+.dot .ping {
+    background-color: rgba(255, 105, 180, 0.2);
+    border-color: #ff69b4;
+    animation: sonar 1.25s infinite;
+}
+
+@keyframes sonar {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(3);
+        opacity: 0;
+    }
+}
+
+/* Heart Pulse Effect */
+@keyframes heartPulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.heart {
+    animation: heartPulse 1.5s infinite;
+    color: #ff69b4;
+}
+
+/* Rainbow Border Animation */
+@keyframes rainbowBorder {
+    0% {
+        border-color: #ff69b4;
+    }
+
+    25% {
+        border-color: #ff9eb5;
+    }
+
+    50% {
+        border-color: #b4ffeb;
+    }
+
+    75% {
+        border-color: #a6d8ff;
+    }
+
+    100% {
+        border-color: #ff69b4;
+    }
+}
+
+.rainbow-box {
+    border: 3px solid;
+    animation: rainbowBorder 4s infinite linear;
+}
+
+/* Bounce Animation */
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.bounce {
+    animation: bounce 0.8s infinite;
+}
+
+/* Floating Animation */
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-15px);
+    }
+}
+
+.float {
+    animation: float 2s ease-in-out infinite;
+}
+
+/* Button Effects */
+.cute-button {
+    background: #ff9eb5;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.cute-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(120deg,
+            transparent,
+            rgba(255, 255, 255, 0.3),
+            transparent);
+    transition: 0.5s;
+}
+
+.cute-button:hover::before {
+    left: 100%;
+}
+
+.cute-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(255, 158, 181, 0.4);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    section {
+        padding: 15px;
+    }
+
+    #goto-top-page,
+    #goto-bot-page {
+        bottom: 10px;
+        right: 10px;
+        width: 35px;
+        height: 35px;
+        font-size: 16px;
+    }
+
+    .loader {
+        width: 45px;
+        height: 45px;
+    }
+}
+
+/* Thêm vào file style.css */
+/* Base styles */
+* {
+    scroll-behavior: smooth;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    background: linear-gradient(-45deg, #fff0f5, #f5f0ff, #f0fff5, #fff5f0);
+    background-size: 400% 400%;
+    animation: gradientFlow 15s ease infinite;
+    font-family: 'Comic Neue', cursive;
+}
+
+@keyframes gradientFlow {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Floating clouds */
+.cloud {
+    position: fixed;
+    z-index: -1;
+    opacity: 0.3;
+    animation: float 20s linear infinite;
+}
+
+@keyframes float {
+    from {
+        transform: translateX(-100%);
+    }
+
+    to {
+        transform: translateX(100vw);
+    }
+}
+
+/* Header animation */
+header {
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    animation: headerSlide 0.8s ease-out;
+    box-shadow: 0 4px 20px rgba(255, 192, 203, 0.1);
+}
+
+@keyframes headerSlide {
+    from {
+        transform: translateY(-100%);
+    }
+
+    to {
+        transform: translateY(0);
+    }
+}
+
+/* Navigation cute style */
+.topnav {
+    background: linear-gradient(90deg, #ffb6c1 0%, #ff69b4 100%);
+    border-radius: 15px;
+    margin: 1rem auto;
+    box-shadow: 0 4px 15px rgba(255, 105, 180, 0.2);
+}
+
+.topnav a {
+    color: white !important;
+    padding: 1rem 1.5rem;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.topnav a:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.05);
+}
+
+.topnav a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 3px;
+    background: white;
+    transition: all 0.3s ease;
+}
+
+.topnav a:hover::after {
+    width: 80%;
+    left: 10%;
+}
+
+/* Product card animation */
+.product-card {
+    background: rgba(255, 255, 255, 0.9) !important;
+    border-radius: 15px !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(255, 105, 180, 0.15);
+}
+
+.product-card img {
+    transition: transform 0.3s ease;
+}
+
+.product-card:hover img {
+    transform: scale(1.05);
+}
+
+/* Cute button styles */
+.cute-btn {
+    background: linear-gradient(135deg, #ff69b4 0%, #ff9eb5 100%);
+    color: white !important;
+    padding: 10px 25px;
+    border-radius: 25px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.cute-btn::before {
+    content: "✨";
+    position: absolute;
+    left: -30px;
+    transition: all 0.3s ease;
+}
+
+.cute-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 105, 180, 0.3);
+    padding-left: 45px;
+}
+
+.cute-btn:hover::before {
+    left: 15px;
+}
+
+/* Scroll buttons */
+#goto-top-page,
+#goto-bot-page {
+    background: #ff69b4;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    box-shadow: 0 4px 15px rgba(255, 105, 180, 0.3);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#goto-top-page:hover,
+#goto-bot-page:hover {
+    transform: scale(1.1) rotate(360deg);
+    background: #ff1493;
+}
+
+/* Footer animation */
+.footer {
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    animation: footerRise 0.8s ease-out;
+}
+
+@keyframes footerRise {
+    from {
+        transform: translateY(100%);
+    }
+
+    to {
+        transform: translateY(0);
+    }
+}
+
+/* Thêm màu nền hồng pastel và hiệu ứng gradient */
+body {
+    background: linear-gradient(135deg, #fff0f5 0%, #ffd6e9 100%) !important;
+    min-height: 100vh;
+}
+
+/* Cải thiện độ tương phản cho các thành phần */
+.main {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    box-shadow: 0 0 30px rgba(255, 192, 203, 0.2);
+    margin: 15px;
+    padding: 20px;
+}
+
+.sidebar {
+    background: linear-gradient(180deg, #ffb6c1 0%, #ff69b4 100%) !important;
+}
+
+.table-header th {
+    background: #ff69b4 !important;
+    color: white !important;
+}
+
+.table-content tr:nth-of-type(even) {
+    background-color: rgba(255, 182, 193, 0.1) !important;
+}
+
+/* Nút bấm dễ thương */
+button {
+    background: #ff69b4 !important;
+    color: white !important;
+    border-radius: 20px !important;
+    transition: all 0.3s ease !important;
+}
+
+button:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 5px 15px rgba(255, 105, 180, 0.3) !important;
+}
+
+/* Hiệu ứng hover cho menu */
+.nav-item:hover {
+    background: rgba(255, 255, 255, 0.1) !important;
+}
+
+.nav-link:hover {
+    transform: translateX(10px) !important;
+}
+
+/* Scrollbar màu hồng */
+::-webkit-scrollbar-thumb {
+    background: #ff69b4 !important;
+    border-radius: 10px !important;
+}
+
+/* Animation nhẹ nhàng */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.table-content tr {
+    animation: fadeIn 0.3s ease forwards;
+}
+
+.nav-item {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+        
+/* ==================== End css thêm , chưa sử dụng ========================= */

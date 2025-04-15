@@ -469,3 +469,275 @@ label.star:before {
         text-align: center;
     }
 }
+
+/* chitietsanpham.css */
+.product-detail {
+    animation: slideUp 0.8s ease-out;
+    padding: 2rem;
+    background: #fff5f7;
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(255, 192, 203, 0.1);
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.product-gallery {
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.product-gallery:hover {
+    transform: rotate(-1deg) scale(1.02);
+}
+
+.main-image {
+    border: 3px solid #ff9eb5;
+    border-radius: 15px;
+    box-shadow: 0 8px 24px rgba(255, 158, 181, 0.2);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.main-image:hover {
+    transform: scale(1.03);
+}
+
+.thumbnails img {
+    border: 2px solid transparent;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.thumbnails img:hover {
+    border-color: #ff69b4;
+    transform: translateY(-5px);
+}
+
+.product-info {
+    background: linear-gradient(145deg, #fff 0%, #fff8f9 100%);
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 4px 20px rgba(255, 158, 181, 0.1);
+}
+
+.product-title {
+    color: #ff1493;
+    font-family: 'Comic Neue', cursive;
+    text-shadow: 0 2px 4px rgba(255, 105, 180, 0.1);
+    animation: titleBounce 0.8s ease;
+}
+
+@keyframes titleBounce {
+    0% {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+
+    60% {
+        transform: scale(1.05);
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.price-tag {
+    font-size: 2rem;
+    color: #ff69b4;
+    background: #fff0f5;
+    padding: 1rem 2rem;
+    border-radius: 15px;
+    display: inline-block;
+    animation: pricePulse 1.5s infinite;
+}
+
+@keyframes pricePulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+.buy-button {
+    background: linear-gradient(135deg, #ff69b4 0%, #ff9eb5 100%);
+    color: white !important;
+    padding: 1rem 2.5rem;
+    border-radius: 30px;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.buy-button::before {
+    content: "🎁";
+    position: absolute;
+    left: -30px;
+    transition: all 0.3s ease;
+}
+
+.buy-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(255, 105, 180, 0.3);
+    padding-left: 3.5rem;
+}
+
+.buy-button:hover::before {
+    left: 15px;
+}
+
+.product-specs li {
+    padding: 1rem;
+    margin: 0.5rem 0;
+    background: rgba(255, 160, 176, 0.1);
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+
+.product-specs li:hover {
+    transform: translateX(10px);
+    background: rgba(255, 105, 180, 0.1);
+}
+
+/* Hiệu ứng hình trái tim bay */
+@keyframes floatHearts {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(-100vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+.heart-fall {
+    position: fixed;
+    pointer-events: none;
+    font-size: 24px;
+    color: #ff69b4;
+    animation: floatHearts 3s linear infinite;
+    z-index: 9999;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .product-detail {
+        padding: 1rem;
+    }
+
+    .product-info {
+        padding: 1.5rem;
+    }
+
+    .price-tag {
+        font-size: 1.5rem;
+    }
+
+    .buy-button {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+/* Background mộng mơ */
+body {
+    min-height: 100vh;
+    background: linear-gradient(315deg,
+            #fff0f5 0%,
+            #f8f7ff 30%,
+            #e6e6fa 60%,
+            #d8bfd8 100%);
+    background-size: 400% 400%;
+    animation: cloudMovement 20s ease infinite;
+    position: relative;
+    overflow-x: hidden;
+}
+
+@keyframes cloudMovement {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Hiệu ứng mây bay */
+body::before,
+body::after {
+    content: '';
+    position: fixed;
+    width: 200vw;
+    height: 200vh;
+    background-image:
+        radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.3) 1%, transparent 15%),
+        radial-gradient(circle at 90% 80%, rgba(255, 255, 255, 0.2) 1%, transparent 15%);
+    animation: floatCloud 60s linear infinite;
+    z-index: -1;
+}
+
+body::after {
+    animation-delay: -30s;
+    opacity: 0.7;
+}
+
+@keyframes floatCloud {
+    from {
+        transform: translateX(0) translateY(0);
+    }
+
+    to {
+        transform: translateX(-50%) translateY(-20%);
+    }
+}
+
+/* Hiệu ứng sao lấp lánh */
+.star {
+    position: fixed;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    animation: twinkle 1.5s infinite ease-in-out;
+    z-index: -1;
+}
+
+@keyframes twinkle {
+
+    0%,
+    100% {
+        opacity: 0.3;
+        transform: scale(0.5);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}

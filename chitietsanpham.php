@@ -30,8 +30,8 @@
     <script src="js/dungchung.js"></script>
     <script src="js/chitietsanpham.js"></script>
 
-    <?php 
-        require_once "php/echoHTML.php";
+    <?php
+    require_once "php/echoHTML.php";
     ?>
 </head>
 
@@ -40,9 +40,9 @@
     <?php addTopNav(); ?>
 
     <section>
-        <?php 
-            addHeader(); 
-            addChiTietSanPham();
+        <?php
+        addHeader();
+        addChiTietSanPham();
         ?>
     </section>
 
@@ -54,6 +54,23 @@
 
     <i class="fa fa-arrow-up" id="goto-top-page" onclick="gotoTop()"></i>
     <i class="fa fa-arrow-down" id="goto-bot-page" onclick="gotoBot()"></i>
+    <!-- Thêm trước thẻ đóng body -->
+    <script>
+        // Hiệu ứng trái tim bay
+        document.addEventListener('DOMContentLoaded', () => {
+            const createHeart = () => {
+                const heart = document.createElement('div');
+                heart.className = 'heart-fall';
+                heart.innerHTML = '❤';
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDuration = Math.random() * 3 + 2 + 's';
+                document.body.appendChild(heart);
+
+                setTimeout(() => heart.remove(), 5000);
+            }
+            setInterval(createHeart, 300);
+        });
+    </script>
 
 </body>
 
