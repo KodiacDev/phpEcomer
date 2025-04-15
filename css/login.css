@@ -1,201 +1,264 @@
-html {
-    height: 100%;
-}
+/* File login.css */
 body {
-    height: 100%;
     margin: 0;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #ff7e5f, #feb47b);
+    background-size: cover;
+    position: relative;
+    overflow: hidden;
 }
 
-/* Text Align */
-.text-c {
-    text-align: center;
-}
-.text-l {
-    text-align: left;
-}
-.text-r {
-    text-align: right
-}
-.text-j {
-    text-align: justify;
-}
-
-/* Text Color */
-.text-whitesmoke {
-    color: whitesmoke
-}
-.text-darkyellow {
-    color: rgba(255, 235, 59, 0.432)
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1353&q=80');
+    background-size: cover;
+    filter: brightness(0.6);
+    z-index: -1;
 }
 
-/* Lines */
-
-.line-b {
-    border-bottom: 1px solid #FFEB3B !important;
+.container {
+    animation: fadeInUp 0.8s ease-out;
 }
 
-/* Buttons */
-.button {
-    border-radius: 3px;
+.login-box {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 2.5rem;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(8px);
+    transform: translateZ(0);
+    transition: transform 0.3s ease;
 }
-.form-button {
-    background-color: rgba(255, 235, 59, 0.24);
-    /*border-color: rgba(255, 235, 59, 0.24);*/
+
+.login-box:hover {
+    transform: translateY(-5px);
+}
+
+h3 {
+    color: #2c3e50;
+    font-weight: 700;
+    margin-bottom: 2rem !important;
+    font-size: 1.8rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.form-group label {
+    color: #34495e;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+.form-control {
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 0.8rem 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus {
+    border-color: #f39c12;
+    box-shadow: 0 0 8px rgba(243, 156, 18, 0.2);
+    transform: scale(1.02);
+}
+
+.btn-primary {
+    background: #f39c12;
     border: none;
-    padding: 10px;
-    color: #e6e6e6;
-}
-.form-button:hover,
-.form-button:focus,
-.form-button:active,
-.form-button.active,
-.form-button:active:focus,
-.form-button:active:hover,
-.form-button.active:hover,
-.form-button.active:focus {
-    background-color: rgba(255, 235, 59, 0.473);
-    border-color: rgba(255, 235, 59, 0.473);
-    color: #e6e6e6;
-}
-.button-l {
-    width: 100% !important;
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    margin-top: 1.5rem;
 }
 
-/* Margins g(global) - l(left) - r(right) - t(top) - b(bottom) */
-
-.margin-g {
-    margin: 15px;
-}
-.margin-g-sm {
-    margin: 10px;
-}
-.margin-g-md {
-    margin: 20px;
-}
-.margin-g-lg {
-    margin: 30px;
+.btn-primary:hover {
+    background: #e67e22;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(243, 156, 18, 0.3);
 }
 
-.margin-l {
-    margin-left: 15px;
-}
-.margin-l-sm {
-    margin-left: 10px;
-}
-.margin-l-md {
-    margin-left: 20px;
-}
-.margin-l-lg {
-    margin-left: 30px;
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-.margin-r {
-    margin-right: 15px;
-}
-.margin-r-sm {
-    margin-right: 10px;
-}
-.margin-r-md {
-    margin-right: 20px;
-}
-.margin-r-lg {
-    margin-right: 30px;
-}
-
-.margin-t {
-    margin-top: 15px;
-}
-.margin-t-sm {
-    margin-top: 10px;
-}
-.margin-t-md {
-    margin-top: 20px;
-}
-.margin-t-lg {
-    margin-top: 30px;
+/* Hiệu ứng sóng nước */
+.wave {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/85486/wave.svg);
+    animation: wave 10s linear infinite;
+    opacity: 0.3;
 }
 
-.margin-b {
-    margin-bottom: 15px;
-}
-.margin-b-sm {
-    margin-bottom: 10px;
-}
-.margin-b-md {
-    margin-bottom: 20px;
-}
-.margin-b-lg {
-    margin-bottom: 30px;
+@keyframes wave {
+    0% {
+        background-position-x: 0;
+    }
+
+    100% {
+        background-position-x: 1000px;
+    }
 }
 
-/* Bootstrap Form Control Extension */
+/* Responsive */
+@media (max-width: 768px) {
+    .login-box {
+        padding: 1.5rem;
+        margin: 1rem;
+    }
 
-.form-control,
-.border-line {
-    background-color: #5f5f5f;
-    background-image: none;
-    border: 1px solid #424242;
-    border-radius: 1px;
-    color: inherit;
-    display: block;
-    padding: 6px 12px;
-    transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+    h3 {
+        font-size: 1.5rem;
+    }
+}
+
+/* Hiệu ứng nền */
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+    overflow: hidden;
+    position: relative;
+}
+
+/* Hiệu ứng bong bóng */
+.bubbles .bubble {
+    position: absolute;
+    bottom: -100px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    animation: bubble 10s linear infinite;
+}
+
+@keyframes bubble {
+    0% {
+        transform: translateY(0);
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 0.3;
+    }
+
+    100% {
+        transform: translateY(-100vh);
+        opacity: 0;
+    }
+}
+
+/* Hiệu ứng nút đăng nhập */
+.btn-login {
+    position: relative;
+    overflow: hidden;
+    background: #2ecc71;
+    border: none;
+    color: white;
+    padding: 15px 30px;
+    border-radius: 50px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: 0.4s;
     width: 100%;
 }
-.form-control:focus,
-.border-line:focus {
-    border-color: #FFEB3B;
-    background-color: #616161;
-    color: #e6e6e6;
-}
-.form-control,
-.form-control:focus {
-    box-shadow: none;
-}
-.form-control::-webkit-input-placeholder { color: #BDBDBD; }
 
-/* Container */
-
-.container-content {
-    background-color: #3a3a3aa2;
-    color: inherit;
-    padding: 15px 20px 20px 20px;
-    border-color: #FFEB3B;
-    border-image: none;
-    border-style: solid solid none;
-    border-width: 1px 0;
+.btn-text {
+    position: relative;
+    /* Thêm position relative */
+    z-index: 2;
+    /* Tăng z-index */
+    display: block;
+    /* Hiển thị dạng block */
+    color: white !important;
+    /* Đảm bảo màu chữ */
+    mix-blend-mode: exclusion;
+    /* Hiệu ứng pha trộn màu */
 }
 
-/* Backgrounds */
-
-.main-bg {
-
-    /*background: #fff;*/
-    background: linear-gradient( #000, #aaa);
+.liquid {
+    position: absolute;
+    top: -100px;
+    /* Điều chỉnh vị trí ban đầu */
+    left: 0;
+    width: 100%;
+    height: 200px;
+    background: #27ae60;
+    box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.2);
+    transition: 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    /* Hiệu ứng mượt hơn */
+    z-index: 1;
+    transform: translateY(0);
 }
 
-/* Login & Register Pages*/
-
-.login-container {
-    max-width: 400px;
-    z-index: 100;
-    margin: 0 auto;
-    padding-top: 100px;
-}
-.login.login-container {
-    width: 300px;
-}
-.wrapper.login-container {
-    margin-top: 140px;
-}
-.logo-badge {
-    color: #e6e6e6;
-    font-size: 80px;
-    font-weight: 800;
-    letter-spacing: -10px;
-    margin-bottom: 0;
+.btn-login:hover .liquid {
+    top: -120px;
+    transform: translateY(60%);
+    /* Di chuyển theo trục Y */
 }
 
-Resources
+/* Hiệu ứng input */
+.floating-label {
+    position: relative;
+    margin-bottom: 2rem;
+}
+
+.floating-label input {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-bottom: 2px solid #ddd;
+    background: transparent;
+    transition: 0.3s;
+}
+
+.floating-label label {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #888;
+    transition: 0.3s;
+}
+
+.floating-label input:focus+label,
+.floating-label input:valid+label {
+    top: -5px;
+    font-size: 12px;
+    color: #2ecc71;
+}
+
+.underline {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #2ecc71;
+    transition: 0.4s;
+}
+
+.floating-label input:focus~.underline {
+    width: 100%;
+}

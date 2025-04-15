@@ -1,6 +1,7 @@
 <!-- login_admin.php -->
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="UTF-8">
     <title>Đăng nhập Admin</title>
@@ -10,7 +11,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
     <script>
-        function kiemTraDangNhap(){
+        function kiemTraDangNhap() {
             var a = document.getElementById("username").value;
             var b = document.getElementById("password").value;
 
@@ -32,8 +33,8 @@
                     data_username: a,
                     data_password: b
                 },
-                success: function(kq){
-                    if(kq.indexOf("yes") !== -1){
+                success: function(kq) {
+                    if (kq.indexOf("yes") !== -1) {
                         alert("Đăng nhập thành công");
                         window.location = "admin.php";
                     } else {
@@ -47,22 +48,49 @@
         }
     </script>
 </head>
+
 <body class="bg-light">
+    <!-- Thêm hiệu ứng sóng nước -->
+    <div class="wave-animation"></div>
+
     <div class="container mt-5">
         <div class="row justify-content-center">
-            <div class="col-md-4">
-                <h3 class="text-center mb-4">Đăng nhập Admin</h3>
-                <div class="form-group">
-                    <label>Tài khoản</label>
-                    <input type="text" class="form-control" id="username" placeholder="Nhập tài khoản">
+            <div class="col-md-6 col-lg-4">
+                <!-- Thêm lớp login-box và animation -->
+                <div class="login-box animate__animated animate__fadeInUp">
+                    <h3 class="text-center mb-4">👑 Login Admin</h3>
+
+                    <!-- Form group với hiệu ứng focus -->
+                    <div class="form-group floating-label">
+                        <input type="text" class="form-control" id="username" required>
+                        <label for="username">📧 AdminName</label>
+                        <div class="underline"></div>
+                    </div>
+
+                    <div class="form-group floating-label">
+                        <input type="password" class="form-control" id="password" required>
+                        <label for="password">🔒 AdminPass</label>
+                        <div class="underline"></div>
+                    </div>
+
+                    <!-- Nút đăng nhập với hiệu ứng hover -->
+                    <button class="btn-login" onclick="kiemTraDangNhap()">
+                        <span class="btn-text">🚀 Login</span>
+                        <div class="liquid"></div>
+                    </button>
                 </div>
-                <div class="form-group">
-                    <label>Mật khẩu</label>
-                    <input type="password" class="form-control" id="password" placeholder="Nhập mật khẩu">
-                </div>
-                <button class="btn btn-primary btn-block" onclick="kiemTraDangNhap()">Đăng nhập</button>
             </div>
         </div>
     </div>
+
+    <!-- Hiệu ứng bong bóng nền -->
+    <div class="bubbles">
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+    </div>
 </body>
+
 </html>

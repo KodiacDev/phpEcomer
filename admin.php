@@ -35,7 +35,6 @@
     <header>
         <h2>SmartPhone Store - Admin</h2>
     </header>
-
     <!-- Menu -->
     <aside class="sidebar">
         <ul class="nav">
@@ -81,13 +80,13 @@
 
             <!--<div class="table-content">
             <?php
-                require_once('BackEnd/ConnectionDB/DB_classes.php');
+            require_once('BackEnd/ConnectionDB/DB_classes.php');
 
-                $sp = new SanPhamBUS();
-                $i = 1;
-                echo "<table class='table-outline hideImg'>";
-                foreach ($sp->select_all() as $rowname => $row) {
-                    echo "<tr>
+            $sp = new SanPhamBUS();
+            $i = 1;
+            echo "<table class='table-outline hideImg'>";
+            foreach ($sp->select_all() as $rowname => $row) {
+                echo "<tr>
                         <td style'width: 5%'>" . $i++ . "</td>
                         <td style='width: 10%'>" . $row['MaSP'] . "</td>
                         <td style='width: 40%'>
@@ -107,8 +106,8 @@
                             </div>
                         </td>
                     </tr>";
-                }
-                echo "</table>";
+            }
+            echo "</table>";
             ?>
             </div>-->
 
@@ -154,27 +153,22 @@
                             </td>
                         </tr>
                         <?php
-                            $tenfilemoi= "";
-                                if (isset($_POST["submit"]))
-                                {
-                                    if (($_FILES["hinhanh"]["type"]=="image/jpeg") ||($_FILES["hinhanh"]["type"]=="image/png") || ($_FILES["hinhanh"]["type"]=="image/jpg") && ($_FILES["hinhanh"]["size"] < 50000) )
-                                    {
-                                        if ($_FILES["file"]["error"] > 0 || file_exists("img/products/" . basename($_FILES["hinhanh"]["name"]))) 
-                                        {
-                                            echo ("Error Code: " . $_FILES["file"]["error"] . "<br />Chỉnh sửa ảnh lại sau)");
-                                        }
-                                        else
-                                        {
-                                            /*$tmp = explode(".", $_FILES["hinhanh"]["name"]);
+                        $tenfilemoi = "";
+                        if (isset($_POST["submit"])) {
+                            if (($_FILES["hinhanh"]["type"] == "image/jpeg") || ($_FILES["hinhanh"]["type"] == "image/png") || ($_FILES["hinhanh"]["type"] == "image/jpg") && ($_FILES["hinhanh"]["size"] < 50000)) {
+                                if ($_FILES["file"]["error"] > 0 || file_exists("img/products/" . basename($_FILES["hinhanh"]["name"]))) {
+                                    echo ("Error Code: " . $_FILES["file"]["error"] . "<br />Chỉnh sửa ảnh lại sau)");
+                                } else {
+                                    /*$tmp = explode(".", $_FILES["hinhanh"]["name"]);
                                             $duoifile = end($tmp);
                                             $masp = $_POST['maspThem'];
                                             $tenfilemoi = $masp . "." . $duoifile;*/
-                                            $file = $_FILES["hinhanh"]["name"];
-                                            $tenfilemoi = "img/products/" .$_FILES["hinhanh"]["name"];
-                                            move_uploaded_file( $_FILES["hinhanh"]["tmp_name"], $tenfilemoi);
-                                        }
-                                    }
+                                    $file = $_FILES["hinhanh"]["name"];
+                                    $tenfilemoi = "img/products/" . $_FILES["hinhanh"]["name"];
+                                    move_uploaded_file($_FILES["hinhanh"]["tmp_name"], $tenfilemoi);
                                 }
+                            }
+                        }
                         // require_once ("php/uploadfile.php");
                         ?>
                         <tr>
@@ -308,11 +302,11 @@
             <table class="table-header">
                 <tr>
                     <!-- Theo độ rộng của table content -->
-                    <th title="Sắp xếp"  onclick="sortKhachHangTable('stt')">Stt <i class="fa fa-sort"></i></th>
-                    <th title="Sắp xếp"  onclick="sortKhachHangTable('hoten')">Họ tên <i class="fa fa-sort"></i></th>
-                    <th title="Sắp xếp"  onclick="sortKhachHangTable('email')">Email <i class="fa fa-sort"></i></th>
+                    <th title="Sắp xếp" onclick="sortKhachHangTable('stt')">Stt <i class="fa fa-sort"></i></th>
+                    <th title="Sắp xếp" onclick="sortKhachHangTable('hoten')">Họ tên <i class="fa fa-sort"></i></th>
+                    <th title="Sắp xếp" onclick="sortKhachHangTable('email')">Email <i class="fa fa-sort"></i></th>
                     <th title="Sắp xếp" onclick="sortKhachHangTable('taikhoan')">Tài khoản <i class="fa fa-sort"></i></th>
-                
+
                     <th style="width: 10%">Hành động</th>
                 </tr>
             </table>

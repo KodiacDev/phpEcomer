@@ -1,22 +1,22 @@
 var TONGTIEN = 0;
 
-window.onload = function() {
+window.onload = function () {
 
-    document.getElementById("btnDangXuat").onclick = function() {
-        checkDangXuat(()=>{
+    document.getElementById("btnDangXuat").onclick = function () {
+        checkDangXuat(() => {
             window.location.href = "login.php"
         });
     }
 
-    getCurrentUser((user)=>{
-        if(user != null && user.MaQuyen != 1) {
+    getCurrentUser((user) => {
+        if (user != null && user.MaQuyen != 1) {
             addEventChangeTab();
             addThongKe();
             openTab('Home');
         } else {
             document.body.innerHTML = `<h1 style="color:red; with:100%; text-align:center; margin: 50px;"> Truy cập bị từ chối.. </h1>`;
         }
-    }, (e)=> {
+    }, (e) => {
         document.body.innerHTML = `<h1 style="color:red; with:100%; text-align:center; margin: 50px;"> Truy cập bị từ chối.. </h1>`;
     });
 }
@@ -30,11 +30,11 @@ function refreshTableSanPham() {
         data: {
             request: "getall",
         },
-        success: function(data, status, xhr) {
+        success: function (data, status, xhr) {
             list_products = data; // biến toàn cục lưu trữ mảng sản phẩm hiện có
             addTableProducts(data);
         },
-        error: function(e) {
+        error: function (e) {
             Swal.fire({
                 type: "error",
                 title: "Lỗi lấy dữ liệu sản phẩm (admin.js > refreshTableSanPham)",
@@ -114,21 +114,21 @@ function ajaxLoaiSanPham() {
         data: {
             request: "getall"
         },
-        success: function(data, status, xhr) {
+        success: function (data, status, xhr) {
             showLoaiSanPham(data);
         },
-        error: function(e) {
+        error: function (e) {
 
         }
     });
 }
 
 function showLoaiSanPham(data) {
-    var s="";
+    var s = "";
     for (var i = 0; i < data.length; i++) {
-            var p = data[i];
-                s +=`<option value="` + p.MaLSP + `">` + p.TenLSP + `</option>`;
-        }
+        var p = data[i];
+        s += `<option value="` + p.MaLSP + `">` + p.TenLSP + `</option>`;
+    }
     document.getElementsByName("chonCompany")[0].innerHTML = s;
 }
 
@@ -141,23 +141,23 @@ function ajaxKhuyenMai() {
         data: {
             request: "getall"
         },
-        success: function(data, status, xhr) {
+        success: function (data, status, xhr) {
             showKhuyenMai(data);
             showGTKM(data);
         },
-        error: function(e) {
+        error: function (e) {
 
         }
     });
 }
 
 function showKhuyenMai(data) {
-    var s=`
-        <option selected="selected" value="`+data[0].MaKM+`">Không</option>
-        <option value="`+data[1].MaKM+`">Trả góp</option>
-        <option value="`+data[2].MaKM+`">Giảm giá</option>
-        <option value="`+data[3].MaKM+`">Giá rẻ online</option>
-        <option value="`+data[4].MaKM+`">Mởi ra mắt</option>`;
+    var s = `
+        <option selected="selected" value="`+ data[0].MaKM + `">Không</option>
+        <option value="`+ data[1].MaKM + `">Trả góp</option>
+        <option value="`+ data[2].MaKM + `">Giảm giá</option>
+        <option value="`+ data[3].MaKM + `">Giá rẻ online</option>
+        <option value="`+ data[4].MaKM + `">Mởi ra mắt</option>`;
     document.getElementsByName("chonKhuyenMai")[0].innerHTML = s;
 
 }
@@ -167,23 +167,23 @@ function showGTKM() {
     switch (giaTri) {
         // lấy tất cả khuyến mãi
         case '1':
-                document.getElementById("giatrikm").value = 0;
+            document.getElementById("giatrikm").value = 0;
             break;
 
         case '2':
-                document.getElementById("giatrikm").value = 500000;
+            document.getElementById("giatrikm").value = 500000;
             break;
 
         case '3':
-                document.getElementById("giatrikm").value = 650000;
+            document.getElementById("giatrikm").value = 650000;
             break;
 
         case '4':
-                document.getElementById("giatrikm").value = 0;
+            document.getElementById("giatrikm").value = 0;
             break;
 
         case '5':
-                document.getElementById("giatrikm").value = 0;
+            document.getElementById("giatrikm").value = 0;
             break;
 
         default:
@@ -197,7 +197,7 @@ function addEventChangeTab() {
     var list_a = sidebar.getElementsByTagName('a');
     for (var a of list_a) {
         if (!a.onclick) {
-            a.addEventListener('click', function() {
+            a.addEventListener('click', function () {
                 turnOff_Active();
                 this.classList.add('active');
                 var tab = this.childNodes[1].data.trim()
@@ -259,7 +259,7 @@ function addTableProducts(list_products) {
             </td>
             <td style="width: 15%">` + parseInt(p.DonGia).toLocaleString() + `</td>
             <td style="width: 10%">` + /*promoToStringValue(*/ (p.KM.TenKM) /*)*/ + `</td>
-            <td style="width: 10%">` + (p.TrangThai==1?"Hiện":"Ẩn") + `</td>
+            <td style="width: 10%">` + (p.TrangThai == 1 ? "Hiện" : "Ẩn") + `</td>
             <td style="width: 10%">
                 <div class="tooltip">
                     <i class="fa fa-wrench" onclick="addKhungSuaSanPham('` + p.MaSP + `')"></i>
@@ -309,7 +309,7 @@ function layThongTinSanPhamTuTable(id) {
     var masp = tr[1].getElementsByTagName('td')[1].getElementsByTagName('input')[0].value;
     var name = tr[2].getElementsByTagName('td')[1].getElementsByTagName('input')[0].value;
     var company = tr[3].getElementsByTagName('td')[1].getElementsByTagName('select')[0].value;
-    var img =  document.getElementById("hinhanh").value;
+    var img = document.getElementById("hinhanh").value;
     var price = tr[5].getElementsByTagName('td')[1].getElementsByTagName('input')[0].value;
     var amount = tr[6].getElementsByTagName('td')[1].getElementsByTagName('input')[0].value;
     var star = tr[7].getElementsByTagName('td')[1].getElementsByTagName('input')[0].value;
@@ -360,9 +360,8 @@ function themSanPham() {
 
     //kt tên sp
     var pattCheckTenSP = /([a-z A-Z0-9&():.'_-]{2,})$/;
-    if (pattCheckTenSP.test(newSp.name) == false)
-    {
-        alert ("Tên sản phẩm không hợp lệ");
+    if (pattCheckTenSP.test(newSp.name) == false) {
+        alert("Tên sản phẩm không hợp lệ");
         return false;
     }
 
@@ -376,17 +375,15 @@ function themSanPham() {
 
     //kt giá tiền
     var pattCheckGia = /^([0-9]){1,}(000)$/;
-    if (pattCheckGia.test(newSp.price) == false)
-    {
-        alert ("Đơn giá sản phẩm không hợp lệ");
+    if (pattCheckGia.test(newSp.price) == false) {
+        alert("Đơn giá sản phẩm không hợp lệ");
         return false;
     }
 
     //kt số lượng
     var pattCheckSL = /[0-9]{1,}$/;
-    if (pattCheckSL.test(newSp.amount) == false)
-    {
-        alert ("Số lượng sản phẩm không hợp lệ");
+    if (pattCheckSL.test(newSp.amount) == false) {
+        alert("Số lượng sản phẩm không hợp lệ");
         return false;
     }
 
@@ -399,7 +396,7 @@ function themSanPham() {
             request: "add",
             dataAdd: newSp
         },
-        success: function(data, status, xhr) {
+        success: function (data, status, xhr) {
             Swal.fire({
                 type: 'success',
                 title: 'Thêm thành công'
@@ -408,7 +405,7 @@ function themSanPham() {
             document.getElementById('khungThemSanPham').style.transform = 'scale(0)';
             refreshTableSanPham();
         },
-        error: function(e) {
+        error: function (e) {
             Swal.fire({
                 type: "error",
                 title: "Lỗi add",
@@ -417,7 +414,7 @@ function themSanPham() {
         }
     });
 
-    
+
 
     alert('Thêm sản phẩm "' + newSp.name + '" thành công.');
     refreshTableSanPham();
@@ -432,34 +429,33 @@ function resetForm() {
     tr[5].getElementsByTagName('td')[1].getElementsByTagName('input')[0].value = "";
     tr[6].getElementsByTagName('td')[1].getElementsByTagName('input')[0].value = "0";
 
-    tr[12].getElementsByTagName('td')[1].getElementsByTagName('input')[0].value ="";
-    tr[13].getElementsByTagName('td')[1].getElementsByTagName('input')[0].value ="";
-    tr[14].getElementsByTagName('td')[1].getElementsByTagName('input')[0].value ="";
-    tr[15].getElementsByTagName('td')[1].getElementsByTagName('input')[0].value ="";
-    tr[16].getElementsByTagName('td')[1].getElementsByTagName('input')[0].value ="";
-    tr[17].getElementsByTagName('td')[1].getElementsByTagName('input')[0].value ="";
-    tr[18].getElementsByTagName('td')[1].getElementsByTagName('input')[0].value ="";
-    tr[19].getElementsByTagName('td')[1].getElementsByTagName('input')[0].value ="";
-    tr[20].getElementsByTagName('td')[1].getElementsByTagName('input')[0].value ="";
+    tr[12].getElementsByTagName('td')[1].getElementsByTagName('input')[0].value = "";
+    tr[13].getElementsByTagName('td')[1].getElementsByTagName('input')[0].value = "";
+    tr[14].getElementsByTagName('td')[1].getElementsByTagName('input')[0].value = "";
+    tr[15].getElementsByTagName('td')[1].getElementsByTagName('input')[0].value = "";
+    tr[16].getElementsByTagName('td')[1].getElementsByTagName('input')[0].value = "";
+    tr[17].getElementsByTagName('td')[1].getElementsByTagName('input')[0].value = "";
+    tr[18].getElementsByTagName('td')[1].getElementsByTagName('input')[0].value = "";
+    tr[19].getElementsByTagName('td')[1].getElementsByTagName('input')[0].value = "";
+    tr[20].getElementsByTagName('td')[1].getElementsByTagName('input')[0].value = "";
 }
 
 function autoMaSanPham(company) {
     // hàm tự tạo mã cho sản phẩm mới
-    var autoMaSP = list_products[list_products.length-1].MaSP;
-    document.getElementById('maspThem').value = parseInt(autoMaSP)+1;
+    var autoMaSP = list_products[list_products.length - 1].MaSP;
+    document.getElementById('maspThem').value = parseInt(autoMaSP) + 1;
 }
 
 // Xóa
 function xoaSanPham(trangthai, masp, tensp) {
-    if (trangthai == 1)
-    {
+    if (trangthai == 1) {
         // alert ("Sản phẩm còn đang bán");
         Swal.fire({
             type: 'warning',
             title: 'Bạn có muốn ẨN ' + tensp + ' không!',
             showCancelButton: true
         }).then((result) => {
-            if(result.value) {
+            if (result.value) {
                 $.ajax({
                     type: "POST",
                     url: "php/xulysanpham.php",
@@ -470,14 +466,14 @@ function xoaSanPham(trangthai, masp, tensp) {
                         id: masp,
                         trangthai: 0
                     },
-                    success: function(data, status, xhr) {
+                    success: function (data, status, xhr) {
                         Swal.fire({
                             type: 'success',
                             title: 'Ẩn thành công'
                         })
                         refreshTableSanPham();
                     },
-                    error: function(e) {
+                    error: function (e) {
                         Swal.fire({
                             type: "error",
                             title: "Lỗi xóa",
@@ -488,8 +484,7 @@ function xoaSanPham(trangthai, masp, tensp) {
             }
         })
     }
-    else
-    {
+    else {
         if (window.confirm('Bạn có chắc muốn xóa ' + tensp)) {
             // Xóa
             $.ajax({
@@ -501,10 +496,10 @@ function xoaSanPham(trangthai, masp, tensp) {
                     request: "delete",
                     maspdelete: masp
                 },
-                success: function(data, status, xhr) {
-                    
+                success: function (data, status, xhr) {
+
                 },
-                error: function() {
+                error: function () {
                     Swal.fire({
                         type: "error",
                         title: "Lỗi xóa"
@@ -552,15 +547,15 @@ function addKhungSuaSanPham(masp) {
                 <td>
                     <select name="chonCompany" onchange="autoMaSanPham(this.value)">`
 
-                    var company = ["Apple", "Coolpad", "HTC", "Itel", "Mobell", "Vivo", "Oppo", "SamSung", "Phillips", "Nokia", "Motorola", "Motorola", "Xiaomi"];
-                    var i = 1;
-                    for (var c of company) {
-                        var masp = i++;
-                        if (sp.MaLSP == masp)
-                            s += (`<option value="` + sp.MaLSP + `" selected="selected">` + c + `</option>`);
-                        else s += (`<option value="` + masp + `">` + c + `</option>`);
-                    }
-                    s+=`</select>
+    var company = ["Apple", "Coolpad", "HTC", "Itel", "Mobell", "Vivo", "Oppo", "SamSung", "Phillips", "Nokia", "Motorola", "Motorola", "Xiaomi"];
+    var i = 1;
+    for (var c of company) {
+        var masp = i++;
+        if (sp.MaLSP == masp)
+            s += (`<option value="` + sp.MaLSP + `" selected="selected">` + c + `</option>`);
+        else s += (`<option value="` + masp + `">` + c + `</option>`);
+    }
+    s += `</select>
                 </td>
             </tr>
             <?php
@@ -611,13 +606,13 @@ function addKhungSuaSanPham(masp) {
                 <td>Khuyến mãi:</td>
                 <td>
                     <select name="chonKhuyenMai" onchange="showGTKM()">`
-                            var i = 1;
-                            s += (`<option selected="selected" value="` + i++ + `">Không</option>`);
-                            s += (`<option value="` + i++ + `">Giảm giá</option>`);
-                            s += (`<option value="` + i++ + `">Giá rẻ online</option>`);
-                            s += (`<option value="` + i++ + `">Trả góp</option>`);
-                            s += (`<option value="` + i++ + `">Mới ra mắt</option>`);
-                        s+=`</script>
+    var i = 1;
+    s += (`<option selected="selected" value="` + i++ + `">Không</option>`);
+    s += (`<option value="` + i++ + `">Giảm giá</option>`);
+    s += (`<option value="` + i++ + `">Giá rẻ online</option>`);
+    s += (`<option value="` + i++ + `">Trả góp</option>`);
+    s += (`<option value="` + i++ + `">Mới ra mắt</option>`);
+    s += `</script>
                     </select>
                 </td>
             </tr>
@@ -722,11 +717,11 @@ function refreshTableDonHang() {
         data: {
             request: "getall",
         },
-        success: function(data, status, xhr) {
+        success: function (data, status, xhr) {
             addTableDonHang(data);
             console.log(data);
         },
-        error: function(e) {
+        error: function (e) {
             Swal.fire({
                 type: "error",
                 title: "Lỗi lấy dữ liệu khách Hàng (admin.js > refreshTableKhachHang)",
@@ -923,11 +918,11 @@ function refreshTableKhachHang() {
         data: {
             request: "getall",
         },
-        success: function(data, status, xhr) {
+        success: function (data, status, xhr) {
             addTableKhachHang(data);
             //console.log(data);
         },
-        error: function(e) {
+        error: function (e) {
             Swal.fire({
                 type: "error",
                 title: "Lỗi lấy dữ liệu khách Hàng (admin.js > refreshTableKhachHang)",
@@ -938,7 +933,7 @@ function refreshTableKhachHang() {
 }
 
 function thayDoiTrangThaiND(inp, mand) {
-    var trangthai = (inp.checked?1:0);  
+    var trangthai = (inp.checked ? 1 : 0);
     $.ajax({
         type: "POST",
         url: "php/xulykhachhang.php",
@@ -949,12 +944,12 @@ function thayDoiTrangThaiND(inp, mand) {
             key: mand,
             trangThai: trangthai
         },
-        success: function(data, status, xhr) {
+        success: function (data, status, xhr) {
             //list_products = data; // biến toàn cục lưu trữ mảng sản phẩm hiện có
             // refreshTableKhachHang();
             //console.log(data);
         },
-        error: function(e) {
+        error: function (e) {
             // Swal.fire({
             //     type: "error",
             //     title: "Lỗi lấy dữ liệu khách Hàng (admin.js > refreshTableKhachHang)",
@@ -983,10 +978,10 @@ function addTableKhachHang(data) {
             <td >
                 <div class="tooltip">
                     <label class="switch">
-                        <input type="checkbox" `+(u.TrangThai==1?"checked":"")+` onclick="thayDoiTrangThaiND(this, '`+u.MaND+`')">
+                        <input type="checkbox" `+ (u.TrangThai == 1 ? "checked" : "") + ` onclick="thayDoiTrangThaiND(this, '` + u.MaND + `')">
                         <span class="slider round"></span>
                     </label>
-                    <span class="tooltiptext">` + (u.TrangThai ?    'Mở' : 'Khóa') + `</span>
+                    <span class="tooltiptext">` + (u.TrangThai ? 'Mở' : 'Khóa') + `</span>
                 </div>
                 <div class="tooltip">
                     <i class="fa fa-remove" onclick="xoaNguoiDung('` + u.MaND + `')"></i>
@@ -1030,8 +1025,7 @@ function openThemNguoiDung() {
 
 // vô hiệu hóa người dùng (tạm dừng, không cho đăng nhập vào)
 function voHieuHoaNguoiDung(TrangThai) {
-    if (TrangThai == 1)
-    {
+    if (TrangThai == 1) {
 
     }
     var span = inp.parentElement.nextElementSibling;
@@ -1039,14 +1033,14 @@ function voHieuHoaNguoiDung(TrangThai) {
 }
 
 // Xóa người dùng
-function xoaNguoiDung(mand) { 
+function xoaNguoiDung(mand) {
     Swal.fire({
         title: "Bạn có chắc muốn xóa?",
         type: "question",
         showCancelButton: true,
         cancelButtonText: "Hủy"
-    }).then((result)=>{
-        if(result.value) {
+    }).then((result) => {
+        if (result.value) {
             $.ajax({
                 type: "POST",
                 url: "php/xulykhachhang.php",
@@ -1056,11 +1050,11 @@ function xoaNguoiDung(mand) {
                     request: "delete",
                     mand: mand
                 },
-                success: function(data, status, xhr) {
+                success: function (data, status, xhr) {
                     refreshTableKhachHang();
                     //console.log(data);
                 },
-                error: function(e) {
+                error: function (e) {
                     // Swal.fire({
                     //     type: "error",
                     //     title: "Lỗi lấy dữ liệu khách Hàng (admin.js > refreshTableKhachHang)",
@@ -1169,3 +1163,36 @@ function progress(percent, bg, width, height) {
 // }
 
 // console.log(JSON.stringify(list_products));
+// Thêm hiệu ứng hover cho các row
+document.querySelectorAll('.table-content tr').forEach(row => {
+    row.addEventListener('mouseenter', () => {
+        row.style.transform = 'scale(1.02)';
+    });
+    row.addEventListener('mouseleave', () => {
+        row.style.transform = 'scale(1)';
+    });
+});
+
+// Hiệu ứng cho sidebar mobile
+const sidebar = document.querySelector('.sidebar');
+sidebar.addEventListener('mouseenter', () => {
+    sidebar.style.width = '200px';
+});
+sidebar.addEventListener('mouseleave', () => {
+    sidebar.style.width = '80px';
+});
+
+/* Thêm vào JavaScript để tạo hiệu ứng */
+document.addEventListener('DOMContentLoaded', () => {
+    const createHeart = () => {
+        const heart = document.createElement('div');
+        heart.className = 'heart-particle';
+        heart.innerHTML = '❤';
+        heart.style.left = Math.random() * 100 + 'vw';
+        heart.style.animationDuration = Math.random() * 3 + 2 + 's';
+        document.body.appendChild(heart);
+
+        setTimeout(() => heart.remove(), 5000);
+    }
+    setInterval(createHeart, 300);
+});

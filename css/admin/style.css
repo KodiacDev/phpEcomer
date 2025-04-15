@@ -461,20 +461,432 @@ input:checked+.slider:before {
 }
 
 /* responsive */
-@media only screen and (max-width: 768px){
+@media only screen and (max-width: 768px) {
     .sidebar {
         width: 100%;
     }
+
     .sidebar .nav-item {
         float: left;
         width: 16%;
     }
-    
-    hr  {
+
+    hr {
         display: none;
     }
 
     .main {
         width: 100%;
     }
+}
+
+/* Base styles - Giữ nguyên phần gốc và thêm hiệu ứng */
+* {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: linear-gradient(45deg, #2f353a, #3a4149);
+    min-height: 100vh;
+}
+
+/* Header cute */
+header {
+    background: rgba(58, 65, 73, 0.95);
+    backdrop-filter: blur(5px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    padding: 1rem 2rem;
+    animation: slideDown 0.5s ease;
+}
+
+header h2 {
+    color: #fff;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    font-family: 'Comic Neue', cursive;
+    position: relative;
+}
+
+header h2::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 50px;
+    height: 3px;
+    background: #63c2de;
+    border-radius: 2px;
+}
+
+/* Sidebar mới với hiệu ứng */
+.sidebar {
+    background: rgba(35, 40, 44, 0.95);
+    backdrop-filter: blur(5px);
+    box-shadow: 5px 0 15px rgba(0, 0, 0, 0.2);
+    min-height: 100vh;
+    transition: transform 0.3s ease;
+}
+
+.sidebar:hover {
+    transform: translateX(5px);
+}
+
+.nav-item {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-link {
+    padding: 1rem 1.5rem;
+    color: #a0aab4 !important;
+    transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+    transform: translateX(10px);
+    background: linear-gradient(90deg, rgba(74, 123, 141, 0.3) 0%, transparent 100%);
+}
+
+.nav-link.active {
+    background: linear-gradient(90deg, #20a8d8 0%, #63c2de 100%);
+    box-shadow: 0 4px 15px rgba(32, 168, 216, 0.3);
+}
+
+.nav-link i {
+    transition: transform 0.3s ease;
+}
+
+.nav-link:hover i {
+    transform: scale(1.2) rotate(-10deg);
+}
+
+/* Main content animation */
+.main {
+    background: rgba(46, 52, 58, 0.9);
+    backdrop-filter: blur(10px);
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 0.8s ease;
+}
+
+/* Table cute version */
+.table-outline {
+    border-radius: 15px;
+    overflow: hidden;
+    transform: translateY(20px);
+    animation: tableEnter 0.6s ease forwards;
+}
+
+.table-header th {
+    background: linear-gradient(160deg, #4e5860 0%, #3a4149 100%);
+    padding: 1.2rem;
+    font-size: 1.1em;
+    letter-spacing: 1px;
+    position: relative;
+}
+
+.table-header th::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 80%;
+    height: 2px;
+    background: #63c2de;
+    transform: translateX(-50%);
+}
+
+.table-content tr {
+    transition: all 0.3s ease;
+    background: rgba(62, 65, 68, 0.7);
+}
+
+.table-content tr:hover {
+    transform: scale(1.02);
+    background: rgba(74, 123, 141, 0.3);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Nút cute */
+button,
+.table-footer input,
+.table-footer select {
+    border-radius: 8px !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    border: 2px solid transparent !important;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Overlay animation */
+.overlay {
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(8px);
+    animation: overlayIn 0.4s ease forwards;
+}
+
+.overlayTable {
+    animation: modalIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+}
+
+.close {
+    animation: rotateIn 0.5s ease;
+}
+
+.close:hover {
+    animation: spin 0.6s ease;
+}
+
+/* Keyframes */
+@keyframes slideDown {
+    from {
+        transform: translateY(-100%);
+    }
+
+    to {
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes tableEnter {
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes overlayIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes modalIn {
+    from {
+        transform: scale(0) rotate(-15deg);
+    }
+
+    to {
+        transform: scale(1) rotate(0);
+    }
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Scrollbar cute */
+::-webkit-scrollbar {
+    width: 8px;
+    background: rgba(0, 0, 0, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(45deg, #63c2de, #4dbd74);
+    border-radius: 10px;
+}
+
+/* Responsive cute */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 80px;
+        transition: width 0.3s ease;
+    }
+
+    .sidebar:hover {
+        width: 200px;
+    }
+
+    .nav-link span {
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .sidebar:hover .nav-link span {
+        opacity: 1;
+    }
+}
+
+/* Pink Theme Base */
+body {
+    background: linear-gradient(45deg, #fff0f5, #ffe4e1);
+}
+
+/* Header Strawberry */
+header {
+    background: rgba(255, 182, 193, 0.95);
+    box-shadow: 0 4px 20px rgba(255, 192, 203, 0.2);
+    border-bottom: 2px solid #ff69b4;
+}
+
+header h2 {
+    color: #ff1493;
+    text-shadow: 0 2px 4px rgba(255, 105, 180, 0.1);
+    font-family: 'Comic Neue', cursive;
+}
+
+header h2::after {
+    background: #ff69b4;
+}
+
+/* Sidebar Macaron */
+.sidebar {
+    background: rgba(255, 218, 223, 0.95);
+    box-shadow: 5px 0 15px rgba(255, 192, 203, 0.2);
+}
+
+.nav-link {
+    color: #ff69b4 !important;
+}
+
+.nav-link:hover {
+    background: linear-gradient(90deg, rgba(255, 105, 180, 0.2) 0%, transparent 100%);
+}
+
+.nav-link.active {
+    background: linear-gradient(90deg, #ff69b4 0%, #ffb6c1 100%);
+    box-shadow: 0 4px 15px rgba(255, 105, 180, 0.3);
+}
+
+.nav-link i {
+    color: #ff1493;
+}
+
+/* Main Content Bubblegum */
+.main {
+    background: rgba(255, 240, 245, 0.9);
+    box-shadow: -5px 0 15px rgba(255, 192, 203, 0.1);
+}
+
+/* Table Cotton Candy */
+.table-outline {
+    border: 2px solid #ffb6c1;
+}
+
+.table-header th {
+    background: linear-gradient(160deg, #ffb6c1 0%, #ff69b4 100%);
+    color: #ffffff;
+}
+
+.table-header th::after {
+    background: #ffffff;
+}
+
+.table-content tr {
+    background: rgba(255, 255, 255, 0.9);
+}
+
+.table-content tr:nth-of-type(even) {
+    background: rgba(255, 182, 193, 0.1);
+}
+
+.table-content tr:hover {
+    background: rgba(255, 105, 180, 0.1);
+    box-shadow: 0 4px 15px rgba(255, 192, 203, 0.1);
+}
+
+.table-content td {
+    color: #ff1493;
+}
+
+/* Buttons & Inputs */
+button,
+.table-footer input,
+.table-footer select {
+    background: #ffb6c1 !important;
+    color: #ff1493 !important;
+    border: 2px solid #ff69b4 !important;
+}
+
+button:hover {
+    background: #ff69b4 !important;
+    color: white !important;
+}
+
+/* Overlay Marshmallow */
+.overlayTable {
+    background: #fff0f5;
+    border: 2px solid #ff69b4;
+    box-shadow: 0 0 30px rgba(255, 105, 180, 0.2);
+}
+
+.close:hover {
+    background-color: #ff69b4;
+}
+
+/* Scrollbar Lollipop */
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(45deg, #ff69b4, #ffb6c1);
+}
+
+/* Animation Adjustments */
+.progress-bar::after {
+    background: linear-gradient(90deg,
+            rgba(255, 255, 255, 0) 0%,
+            rgba(255, 255, 255, 0.5) 50%,
+            rgba(255, 255, 255, 0) 100%);
+}
+
+/* Switch Cherry */
+input:checked+.slider {
+    background-color: #ff69b4;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .sidebar {
+        background: rgba(255, 182, 193, 0.95);
+    }
+
+    .nav-link span {
+        color: #ff1493;
+    }
+}
+
+/* Thêm hiệu ứng trái tim bay */
+@keyframes floatHeart {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(-100vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+.heart-particle {
+    position: fixed;
+    pointer-events: none;
+    animation: floatHeart 3s linear infinite;
+    font-size: 24px;
+    color: #ff69b4;
+    z-index: 9999;
 }

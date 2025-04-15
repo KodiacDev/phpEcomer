@@ -1,35 +1,108 @@
-/* Thanh % */
+/* Progress bar cute version */
 .progress {
     display: block;
     position: relative;
-    height: 10px;
+    height: 16px;
     width: 300px;
-    background-color: #515b65;
-    border-radius: 0.25em;
+    background-color: #e9ecef;
+    border-radius: 20px;
     overflow: hidden;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.progress:hover {
+    transform: scale(1.02);
 }
 
 .progress:not(:last-child) {
-    margin-bottom: 2px;
+    margin-bottom: 1rem;
 }
 
 .progress-bar {
     position: absolute;
     height: 100%;
     left: 0;
+    border-radius: 20px;
+    transition:
+        width 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55),
+        background-color 0.3s ease;
+    box-shadow:
+        2px 0 8px rgba(255, 255, 255, 0.2),
+        inset -2px 0 4px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
 }
 
-/* background color class */
+/* Stripes animation */
+.progress-bar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(90deg,
+            rgba(255, 255, 255, 0) 0%,
+            rgba(255, 255, 255, 0.3) 50%,
+            rgba(255, 255, 255, 0) 100%);
+    animation: shine 2s infinite ease-in-out;
+}
 
+@keyframes shine {
+    0% {
+        left: -100%;
+    }
+
+    100% {
+        left: 200%;
+    }
+}
+
+/* Color variations with gradient */
 .bg-info {
-    background-color: #63c2de;
+    background: linear-gradient(135deg, #63c2de 0%, #20a8d8 100%);
 }
+
 .bg-danger {
-    background-color: #f86c6b;
+    background: linear-gradient(135deg, #f86c6b 0%, #f63130 100%);
 }
+
 .bg-success {
-    background-color: #4dbd74;
+    background: linear-gradient(135deg, #4dbd74 0%, #2f9e44 100%);
 }
+
 .bg-warning {
-    background-color: #ffc107;
+    background: linear-gradient(135deg, #ffc107 0%, #ff9800 100%);
+}
+
+/* Bounce animation when loaded */
+@keyframes progressBounce {
+    0% {
+        transform: scaleX(0);
+    }
+
+    80% {
+        transform: scaleX(1.05);
+    }
+
+    100% {
+        transform: scaleX(1);
+    }
+}
+
+.progress-bar.active {
+    animation: progressBounce 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* Percentage text styling */
+.progress-percent {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: white;
+    font-size: 0.75rem;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    mix-blend-mode: lighten;
 }
