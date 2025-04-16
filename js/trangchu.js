@@ -11,8 +11,7 @@ window.onload = function() {
     // autocomplete(document.getElementById('search-box'), list_products);
 
     // thêm tags (từ khóa) vào khung tìm kiếm
-    var tags = ["Samsung", "iPhone", "Coolpad", "Oppo", "Mobi"];
-    for (var t of tags) addTags(t, "index.php?search=" + t);
+
 
     // =================== web 2 tìm nâng cao ================
     // Thêm hình vào banner
@@ -50,27 +49,6 @@ window.onload = function() {
         hienThiKhungSanPhamMacDinh();
     }
 
-    // Thêm chọn mức giá
-    addPricesRange(0, 2000000);
-    addPricesRange(2000000, 4000000);
-    addPricesRange(4000000, 7000000);
-    addPricesRange(7000000, 13000000);
-    addPricesRange(13000000, 0);
-
-    // Thêm chọn khuyến mãi
-    addPromotion('Nothing');
-    addPromotion('giamgia');
-    addPromotion('tragop');
-    addPromotion('moiramat');
-    addPromotion('giareonline');
-
-    // Thêm chọn số sao
-    addStarFilter(0);
-    addStarFilter(1);
-    addStarFilter(2);
-    addStarFilter(3);
-    addStarFilter(4);
-    addStarFilter(5);
 
     // Thêm chọn sắp xếp
     addSortFilter('asc', 'DonGia', 'Giá tăng dần');
@@ -88,7 +66,7 @@ function hienThiKhungSanPhamMacDinh() {
 
     $('.contain-khungSanPham').html('');
 
-    var soLuong = (window.innerWidth < 1200 ? 4 : 5); // màn hình nhỏ thì hiển thị 4 sp, to thì hiển thị 5
+    var soLuong = (window.innerWidth < 1200 ? 4 : 20); // màn hình nhỏ thì hiển thị 4 sp, to thì hiển thị 5
 
     // Các màu
     var yellow_red = ['#ff9c00', '#ec1f1f'];
@@ -96,12 +74,8 @@ function hienThiKhungSanPhamMacDinh() {
     var green = ['#5de272', '#007012'];
 
     // Thêm các khung sản phẩm
-    addKhungSanPham('NỔI BẬT NHẤT', yellow_red, ['star=0', 'sort=SoDanhGia-desc', 'page=0'], soLuong);
-    addKhungSanPham('SẢN PHẨM MỚI', blue, ['promo=moiramat', 'sort=SoDanhGia-desc', 'page=0'], soLuong);
-    addKhungSanPham('TRẢ GÓP 0%', yellow_red, ['promo=tragop', 'page=0'], soLuong);
-    addKhungSanPham('GIÁ SỐC ONLINE', green, ['promo=giareonline', 'page=0'], soLuong);
-    addKhungSanPham('GIẢM GIÁ LỚN', yellow_red, ['promo=giamgia', 'page=0'], soLuong);
-    addKhungSanPham('GIÁ RẺ CHO MỌI NHÀ', green, ['price=0-3000000', 'sort=DonGia-asc', 'page=0'], soLuong);
+    addKhungSanPham('Danh sách sản phẩm', yellow_red, ['star=0', 'sort=SoDanhGia-desc', 'page=0'], soLuong);
+
 }
 
 function setupBanner() {
@@ -233,10 +207,6 @@ function addProductsFromList(list, filters) {
         }
     }
 
-    document.getElementById("divSoLuongSanPham").scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
-    });
 }
 
 function chuyenTrang(vitriTrang) {
@@ -268,7 +238,6 @@ function filtersAjax(filters, callback) {
         $(".contain-products").css("display", "block");
         $(".contain-khungSanPham").css("display", "none");
         $(".contain-products li.sanPham").remove(); // xóa các sản phẩm hiện tại
-        $(".loader").css("display", "block");
     }
     $.ajax({
         type: "POST",
@@ -417,7 +386,7 @@ function addKhungSanPham(tenKhung, color, filters, len) {
 
     // mở tag
     var s = `<div class="khungSanPham" style="` + borderColor + `">
-                <h3 class="tenKhung" style="` + gradient + `">* ` + tenKhung + ` *</h3>
+                <h3 class="tenKhung" style="` + gradient + `">  ` + tenKhung + ` </h3>
                 <div class="listSpTrongKhung flexContain" data-tenkhung="` + tenKhung + `">
                     <div class="loader"></div>
                 </div>

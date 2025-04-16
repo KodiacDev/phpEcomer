@@ -7,7 +7,7 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<link rel="shortcut icon" href="img/favicon.ico" />
 
-	<title>Thế giới điện thoại</title>
+	<title>Giỏ hàng</title>
 
 	<!-- Load font awesome icons -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" crossorigin="anonymous">
@@ -43,8 +43,10 @@
 	<?php addTopNav(); ?>
 
 	<section style="min-height: 85vh">
-		<?php addHeader(); ?>
-
+		<?php addHeader(); 
+		?>
+		<div class="tags"></div>
+		
 		<table class="listSanPham"></table>
 
 		<div class="modal fade" id="exampleModal" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

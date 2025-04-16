@@ -26,24 +26,43 @@ function addHeader()
         <div style="display: none;" class="smallmenu" id="closemenu" onclick="smallmenu(0)">×</div>
         <div class="logo">
             <a href="index.php">
-                <img src="img/logo.jpg" alt="Trang chủ Smartphone Store" title="Trang chủ Smartphone Store">
+                <img src="img/logo.jpg" alt="Trang chủ" title="Trang chủ">
             </a>
         </div> <!-- End Logo -->
 
         <div class="content">
             <div class="search-header">
-                <form class="input-search" method="get" action="index.php">
-                    <div class="autocomplete">
-                        <input id="search-box" name="search" autocomplete="off" type="text" placeholder="Nhập từ khóa tìm kiếm...">
-                        <button type="submit">
-                            <i class="fa fa-search"></i>
-                            Tìm kiếm
-                        </button>
-                    </div>
-                </form> <!-- End Form search -->
-                <div class="tags">
-                    <strong>Từ khóa: </strong>
-                </div>
+                <form class="search-form" method="get" action="index.php" style="
+                    display: flex;
+                    align-items: center;
+                    max-width: 400px;
+                    margin: auto;
+                    border: 1px solid #ccc;
+                    border-radius: 25px;
+                    padding: 5px 10px;
+                    background-color: #fff;
+                    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+                ">
+                    <input id="search-box" name="search" type="text" placeholder="Tìm sản phẩm, danh mục..." autocomplete="off" style="
+                        flex: 1;
+                        border: none;
+                        outline: none;
+                        padding: 10px;
+                        font-size: 16px;
+                        border-radius: 25px;
+                    ">
+                    <button type="submit" style="
+                        background: none;
+                        border: none;
+                        font-size: 20px;
+                        cursor: pointer;
+                        color: #333;
+                        padding: 5px 10px;
+                        transition: color 0.3s;
+                    " onmouseover="this.style.color=\'#007BFF\'" onmouseout="this.style.color=\'#333\'">
+                        🔍
+                    </button>
+                </form>
             </div> <!-- End Search header -->
 
             <div class="tools-member">
@@ -65,17 +84,11 @@ function addHeader()
                         <span class="cart-number"></span>
                     </a>
                 </div> <!-- End Cart -->
-
-                <!-- <div class="check-order">
-                    <a>
-                        <i class="fa fa-truck"></i>
-                        <span>Đơn hàng</span>
-                    </a>
-                </div>  -->
             </div><!-- End Tools Member -->
         </div> <!-- End Content -->
     </div> <!-- End Header -->';
 }
+
 
 // thêm home
 function addHome()
@@ -84,18 +97,14 @@ function addHome()
     <div class="banner">
         <div class="owl-carousel owl-theme"></div>
     </div> <!-- End Banner -->
-    
-   
-
-    
-
     <!-- Mặc định mới vào trang sẽ ẩn đi, nế có filter thì mới hiện lên -->
     <div class="contain-products" style="display:none">
-    <div class="filterName">
-        <div id="divSoLuongSanPham"></div>
-        <input type="text" placeholder="Lọc trong trang theo tên..." onkeyup="filterProductsName(this)">
-        <div class="loader" style="display: none"></div>
-    </div> <!-- End FilterName -->
+<div class="filterName">
+    <div id="divSoLuongSanPham">Tất cả sản phẩm</div>
+    <!-- Nếu không cần lọc, có thể ẩn hoặc xóa input -->
+    <!-- <input type="text" placeholder="Lọc trong trang theo tên..." onkeyup="filterProductsName(this)"> -->
+    <div class="loader" style="display: none"></div>
+</div> <!-- End FilterName -->
 
     <ul id="products" class="homeproduct group flexContain">
         <div id="khongCoSanPham">
@@ -110,34 +119,173 @@ function addHome()
     <!-- Div hiển thị khung sp hot, khuyến mãi, mới ra mắt ... -->
     <div class="contain-khungSanPham"></div>';
 }
-
-// Thêm chi tiết sản phẩm
 function addChiTietSanPham()
 {
     echo '
-    <div class="chitietSanpham" style="min-height: 85vh">
-        <h1>Điện thoại </h1>
+    <style>
+        .chitietSanpham {
+            min-height: 85vh;
+            font-family: Arial, sans-serif;
+            background: #f5f7fa;
+            padding: 20px;
+            margin: 0 auto;
+            max-width: 1200px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .chitietSanpham h1 {
+            color: #2d3436;
+            font-size: 28px;
+            text-align: center;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+        .rowdetail {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        .picture {
+            flex: 1;
+            min-width: 300px;
+            text-align: center;
+        }
+        .picture img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .price_sale {
+            flex: 1;
+            min-width: 300px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .area_price {
+            font-size: 24px;
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        .ship {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #2ecc71;
+            font-size: 14px;
+            background: #e9f7ef;
+            padding: 8px;
+            border-radius: 4px;
+        }
+        .area_promo {
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        .area_promo strong {
+            color: #2d3436;
+            font-size: 16px;
+        }
+        .promo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #2ecc71;
+            margin-top: 8px;
+        }
+        .policy {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            font-size: 14px;
+            color: #636e72;
+        }
+        .policy div {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        .policy i {
+            color: #007bff;
+        }
+        .area_order {
+            margin-top: 20px;
+        }
+        .buy_now {
+            display: inline-block;
+            background: #007bff;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+        .buy_now:hover {
+            background: #0056b3;
+        }
+        .buy_now h3 {
+            margin: 0;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .info_product {
+            flex: 1;
+            min-width: 300px;
+        }
+        .info_product h2 {
+            color: #2d3436;
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+        .info_product ul {
+            list-style: none;
+            padding: 0;
+            background: #f8f9fa;
+            border-radius: 4px;
+            padding: 15px;
+        }
+        .info_product ul li {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+        hr {
+            border: none;
+            border-top: 1px solid #ddd;
+            margin: 20px 0;
+        }
+    </style>
+    <div class="chitietSanpham">
+        <h1>Điện thoại</h1>
         <div class="rowdetail group">
             <div class="picture">
                 <img src="">
             </div>
             <div class="price_sale">
-                <div class="area_price"> </div>
+                <div class="area_price"></div>
                 <div class="ship" style="display: none;">
                     <i class="fa fa-clock-o"></i>
                     <div>NHẬN HÀNG TRONG 1 GIỜ</div>
                 </div>
                 <div class="area_promo">
-                    <strong>khuyến mãi</strong>
+                    <strong>Khuyến mãi</strong>
                     <div class="promo">
                         <i class="fa fa-check-circle"></i>
-                        <div id="detailPromo"> </div>
+                        <div id="detailPromo"></div>
                     </div>
                 </div>
                 <div class="policy">
                     <div>
                         <i class="fa fa-archive"></i>
-                        <p>Trong hộp có: Sạc, Tai nghe, Sách hướng dẫn, Cây lấy sim, Ốp lưng </p>
+                        <p>Trong hộp có: Sạc, Tai nghe, Sách hướng dẫn, Cây lấy sim, Ốp lưng</p>
                     </div>
                     <div>
                         <i class="fa fa-star"></i>
@@ -149,7 +297,6 @@ function addChiTietSanPham()
                     </div>
                 </div>
                 <div class="area_order">
-                    <!-- nameProduct là biến toàn cục được khởi tạo giá trị trong phanTich_URL_chiTietSanPham -->
                     <a class="buy_now" onclick="themVaoGioHang(maProduct, nameProduct);">
                         <h3><i class="fa fa-plus"></i> Thêm vào giỏ hàng</h3>
                     </a>
@@ -157,9 +304,7 @@ function addChiTietSanPham()
             </div>
             <div class="info_product">
                 <h2>Thông số kỹ thuật</h2>
-                <ul class="info">
-
-                </ul>
+                <ul class="info"></ul>
             </div>
         </div>
         <hr>
@@ -195,7 +340,6 @@ function addChiTietSanPham()
         </div>
     </div>';
 }
-
 // Thêm footer
 function addFooter()
 {
@@ -208,8 +352,7 @@ function addFooter()
     <!-- ============== Footer ============= -->
     <div class="copy-right">
         <p>
-            All rights reserved © 2018-' . date("Y") . ' - Designed by
-            <span style="color: #eee; font-weight: bold">H-group</span>
+           Nhóm 5 - Khoa - Tuấn - Chí - 2 Đạt - Hoàng - Thiện
         </p>
     </div>';
 }
@@ -232,6 +375,7 @@ function addContainTaiKhoan()
                     <form action="" method="post" name="formDangNhap" onsubmit="return checkDangNhap();">
                         <div class="field-wrap">
                             <label>
+                            
                                 Tên đăng nhập<span class="req">*</span>
                             </label>
                             <input name="username" type="text" id="username" required autocomplete="off" />

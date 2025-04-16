@@ -674,15 +674,17 @@ function addKhungSuaSanPham(masp) {
     khung.style.transform = 'scale(1)';
 }
 
-// Cập nhật ảnh sản phẩm
 function capNhatAnhSanPham(files, id, anh) {
     var url = '';
-    if (files.length) url = window.URL.createObjectURL(files[0]);
-
-    document.getElementById(id).src = url;
-    document.getElementById('hinhanh').value = anh;
+    if (files.length) {
+        url = window.URL.createObjectURL(files[0]);
+        document.getElementById(id).src = url;
+        document.getElementById('hinhanh').value = 'img/products/' + files[0].name; // Thêm đường dẫn
+    } else {
+        document.getElementById(id).src = anh || ''; // Nếu không có file, dùng giá trị mặc định
+        document.getElementById('hinhanh').value = '';
+    }
 }
-
 // Sắp Xếp sản phẩm
 function sortProductsTable(loai) {
     var list = document.getElementsByClassName('sanpham')[0].getElementsByClassName("table-content")[0];

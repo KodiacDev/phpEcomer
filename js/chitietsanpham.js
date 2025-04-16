@@ -27,7 +27,7 @@ function phanTichURL_Web2() {
             id: maProduct
         },
         success: function(data, status, xhr) {
-            // console.log(data);
+            console.log(data);
             addChiTietToWeb(data);
             nameProduct = data.TenSP;
         },
@@ -45,7 +45,7 @@ function addChiTietToWeb(p) {
     var divChiTiet = document.getElementsByClassName('chitietSanpham')[0];
 
     // Đổi title
-    document.title = p.TenSP + ' - Thế giới điện thoại';
+    document.title = p.TenSP;
 
     // Cập nhật tên h1
     var h1 = divChiTiet.getElementsByTagName('h1')[0];

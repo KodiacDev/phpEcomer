@@ -15,7 +15,10 @@ function copyObject(o) {
 
 // ================ Cart Number + Thêm vào Giỏ hàng ======================
 function getListGioHang() {
+
     return JSON.parse(localStorage.getItem('giohang')); 
+   
+
 }
 
 function setListGioHang(list) {
@@ -530,12 +533,16 @@ function autocomplete(inp, arr) {
 
 // Thêm từ khóa tìm kiếm
 function addTags(nameTag, link) {
-    var new_tag = `<a href=` + link + `>` + nameTag + `</a>`;
+    var new_tag = `<a href="${link}">${nameTag}</a>`;
 
-    // Thêm <a> vừa tạo vào khung tìm kiếm
     var khung_tags = document.getElementsByClassName('tags')[0];
-    khung_tags.innerHTML += new_tag;
+    if (khung_tags) {
+        khung_tags.innerHTML += new_tag;
+    } else {
+        console.warn("Không tìm thấy phần tử có class 'tags'");
+    }
 }
+
 
 function smallmenu(number) {
     if (number == 1) {

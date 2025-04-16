@@ -65,25 +65,148 @@ function addProductToTable(listProduct) {
     var table = document.getElementsByClassName('listSanPham')[0];
 
     var s = `
-		<tbody>
-			<tr>
-				<th>Sản phẩm</th>
-				<th>Giá</th>
-				<th>Số lượng</th>
-				<th>Thành tiền</th>
-				<th>Xóa</th>
-			</tr>`;
+        <style>
+            .listSanPham {
+                width: 100%;
+                border-collapse: collapse;
+                font-family: Arial, sans-serif;
+                background: #fff;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+                border-radius: 8px;
+                overflow: hidden;
+            }
+            .listSanPham th {
+                background: #2c3e50;
+                color: white;
+                padding: 15px;
+                text-transform: uppercase;
+                font-size: 14px;
+            }
+            .listSanPham td {
+                padding: 12px;
+                border-bottom: 1px solid #eee;
+                vertical-align: middle;
+            }
+            .listSanPham tr:hover {
+                background: #f8f9fa;
+            }
+            .smallImg {
+                width: 60px;
+                height: 60px;
+                object-fit: cover;
+                border-radius: 4px;
+                margin-bottom: 8px;
+            }
+            .noPadding a {
+                text-decoration: none;
+                color: #333;
+                transition: color 0.2s;
+            }
+            .noPadding a:hover {
+                color: #007bff;
+            }
+            .soluong {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                justify-content: center;
+            }
+            .soluong input {
+                width: 50px;
+                padding: 5px;
+                text-align: center;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+            }
+            .soluong button {
+                background: #007bff;
+                color: white;
+                border: none;
+                padding: 6px 10px;
+                border-radius: 4px;
+                cursor: pointer;
+                transition: background 0.2s;
+            }
+            .soluong button:hover {
+                background: #0056b3;
+            }
+            .fa-trash {
+                color: #dc3545;
+                cursor: pointer;
+                font-size: 18px;
+                transition: color 0.2s;
+            }
+            .fa-trash:hover {
+                color: #b02a37;
+            }
+            .alignRight {
+                text-align: right;
+            }
+            .empty-cart {
+                color: #28a745;
+                background: #e9f7ef;
+                padding: 20px;
+                text-align: center;
+                font-size: 24px;
+                margin: 20px 0;
+                border-radius: 8px;
+            }
+            .total-row {
+                background: #f1f3f5;
+                font-weight: bold;
+            }
+            .total-row td {
+                padding: 15px;
+                color: #d63031;
+            }
+            .action-buttons {
+                display: flex;
+                gap: 10px;
+                justify-content: flex-end;
+                padding: 15px;
+            }
+            .btn {
+                padding: 10px 20px;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+                font-size: 14px;
+                transition: background 0.2s;
+            }
+            .btn-primary {
+                background: #007bff;
+                color: white;
+            }
+            .btn-primary:hover {
+                background: #0056b3;
+            }
+            .btn-danger {
+                background: #dc3545;
+                color: white;
+            }
+            .btn-danger:hover {
+                background: #b02a37;
+            }
+        </style>
+        <tbody>
+            <tr>
+                <th>Sản phẩm</th>
+                <th>Giá</th>
+                <th>Số lượng</th>
+                <th>Thành tiền</th>
+                <th>Xóa</th>
+            </tr>`;
 
     if (!listProduct || listProduct.length == 0) {
         s += `
-			<tr>
-				<td colspan="7"> 
-					<h1 style="color:green; background-color:white; font-weight:bold; text-align:center; padding: 15px 0;">
-						Giỏ hàng trống !!
-					</h1> 
-				</td>
-			</tr>
-		`;
+            <tr>
+                <td colspan="5"> 
+                    <div class="empty-cart">
+                        Giỏ hàng trống!
+                    </div>
+                </td>
+            </tr>
+        `;
         table.innerHTML = s;
         return;
     }
@@ -97,54 +220,52 @@ function addProductToTable(listProduct) {
         var thanhtien = price * soluongSp;
 
         s += `
-			<tr>
-				<td class="noPadding">
-					<a target="_blank" href="chitietsanpham.html?` + p.MaSP + `" title="Xem chi tiết">
-						<img class="smallImg" src="` + p.HinhAnh + `">
-						<br>
-						` + p.TenSP + `
-					</a>
-				</td>
-				<td class="alignRight">` + numToString(price) + ` ₫</td>
-				<td class="soluong" >
-					<button onclick="giamSoLuong('` + masp + `')"><i class="fa fa-minus"></i></button>
-					<input size="1" onchange="capNhatSoLuongFromInput(this, '` + masp + `')" value=` + soluongSp + `>
-					<button onclick="tangSoLuong('` + masp + `')"><i class="fa fa-plus"></i></button>
-				</td>
-				<td class="alignRight">` + numToString(thanhtien) + ` ₫</td>
-				<td class="noPadding"> 
-					<i class="fa fa-trash" onclick="xoaSanPhamTrongGioHang(` + masp + ",'" + p.TenSP + `')"></i> 
-				</td>
-			</tr>
-		`;
-        // Chú ý nháy cho đúng ở giamsoluong, tangsoluong
+            <tr>
+                <td class="noPadding">
+                    <a target="_blank" href="chitietsanpham.html?${p.MaSP}" title="Xem chi tiết">
+                        <img class="smallImg" src="${p.HinhAnh}">
+                        <br>
+                        ${p.TenSP}
+                    </a>
+                </td>
+                <td class="alignRight">${numToString(price)} ₫</td>
+                <td class="soluong">
+                    <button onclick="giamSoLuong('${masp}')"><i class="fa fa-minus"></i></button>
+                    <input size="1" onchange="capNhatSoLuongFromInput(this, '${masp}')" value=${soluongSp}>
+                    <button onclick="tangSoLuong('${masp}')"><i class="fa fa-plus"></i></button>
+                </td>
+                <td class="alignRight">${numToString(thanhtien)} ₫</td>
+                <td class="noPadding"> 
+                    <i class="fa fa-trash" onclick="xoaSanPhamTrongGioHang(${masp},'${p.TenSP}')"></i> 
+                </td>
+            </tr>
+        `;
         totalPrice += thanhtien;
     }
 
     TotalPrice = totalPrice;
 
     s += `
-			<tr style="font-weight:bold; text-align:center">
-				<td colspan="3">TỔNG TIỀN: </td>
-				<td class="alignRight" style="color:red">` + numToString(totalPrice) + ` ₫</td>
-				<td></td>
-			</tr>
-			<tr>
-				<td colspan="5">
-					<button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" onclick="thanhToan()">
-						<i class="fa fa-usd"></i> Thanh Toán 
-					</button> 
-					<button class="btn btn-danger" onclick="xoaHet()">
-						<i class="fa fa-trash-o"></i> Xóa hết 
-					</button>
-				</td>
-			</tr>
-		</tbody>
-	`;
+            <tr class="total-row">
+                <td colspan="3">TỔNG TIỀN:</td>
+                <td class="alignRight">${numToString(totalPrice)} ₫</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td colspan="5" class="action-buttons">
+                    <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" onclick="thanhToan()">
+                        <i class="fa fa-usd"></i> Thanh Toán
+                    </button> 
+                    <button class="btn btn-danger" onclick="xoaHet()">
+                        <i class="fa fa-trash-o"></i> Xóa hết
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    `;
 
     table.innerHTML = s;
 }
-
 function xoaSanPhamTrongGioHang(masp, tensp) {
 
     Swal.fire({

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thế giới điện thoại</title>
+    <title>Chi tiết sản phẩm</title>
     <link rel="shortcut icon" href="img/favicon.ico" />
 
     <!-- Load font awesome icons -->
